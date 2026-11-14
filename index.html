@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tracking Events Lab</title><script src="vendor/aframe.min.js"></script>
+<style>body{margin:0;background:#edf3f8;color:#172b42;font:16px Arial,sans-serif}main{max-width:1000px;margin:24px auto;padding:0 20px}h1{font-size:26px}p{line-height:1.5}button{font:inherit;padding:12px 18px;border:1px solid #5c7185;border-radius:6px;background:white;cursor:pointer}button:focus-visible{outline:3px solid #1d60c8;outline-offset:3px}nav{display:flex;gap:12px;flex-wrap:wrap}#message{padding:16px;background:white;border:1px solid #bdcddd;font-weight:bold}#viewport{height:380px;position:relative;border:1px solid #bdcddd;border-radius:8px;overflow:hidden}#event-log{background:white;padding:14px 14px 14px 36px;line-height:1.6}.note{font-size:14px}</style></head><body><main>
+<h1>Tracking Events Lab</h1>
+<p><strong>Simulation only.</strong> Buttons send test events. No camera is used and no picture is recognised.</p>
+<nav aria-label="Tracking test controls"><button id="found" type="button">Simulate Found</button><button id="lost" type="button">Simulate Lost</button><button id="reset" type="button">Reset to Searching</button></nav>
+<p id="message" role="status" aria-live="polite">Starter awaiting a state update.</p>
+<div id="viewport"><a-scene embedded vr-mode-ui="enabled: false" xr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" background="color: #edf3f8">
+<a-entity light="type: ambient; intensity: 0.8"></a-entity><a-entity light="type: directional; intensity: 1" position="-3 6 5"></a-entity>
+<a-plane rotation="-90 0 0" width="16" height="16" color="#d7e1eb"></a-plane>
+<a-cylinder position="0 0.5 0" radius="0.38" height="1" color="#40566d"></a-cylinder><a-cylinder position="0 1.05 0" radius="0.75" height="0.10" color="#9fb3c8"></a-cylinder>
+  <a-entity id="exhibit" visible="true"
+    position="0 1.10 0"
+    rotation="0 0 0"
+    scale="1 1 1">
+
+    <a-cylinder position="0 0.06 0" radius="0.42" height="0.12" color="#20384e"></a-cylinder>
+    <a-cylinder position="0 0.55 0" radius="0.065" height="0.9" color="#6c8298"></a-cylinder>
+    <a-entity position="0 1.25 0">
+      <a-cylinder rotation="90 0 0" radius="0.49" height="0.10" color="#20384e"></a-cylinder>
+      <a-entity id="blades" position="0 0 0.07">
+        <a-box position="0 0.23 0" width="0.13" height="0.38" depth="0.035" color="#a9d8ed"></a-box>
+        <a-box rotation="0 0 120" position="-0.20 -0.115 0" width="0.13" height="0.38" depth="0.035" color="#a9d8ed"></a-box>
+        <a-box rotation="0 0 240" position="0.20 -0.115 0" width="0.13" height="0.38" depth="0.035" color="#a9d8ed"></a-box>
+      </a-entity>
+      <a-torus position="0 0 0.12" radius="0.46" radius-tubular="0.025" color="#6c8298"></a-torus>
+      <a-sphere position="0 0 0.15" radius="0.09" color="#167ac6"></a-sphere>
+    </a-entity>
+  </a-entity>
+
+<a-entity camera="fov: 48" position="0 2.5 6" rotation="-6 0 0" look-controls="enabled: false" wasd-controls="enabled: false"></a-entity></a-scene></div>
+<p class="note">The stand stays visible. Your handlers control the fan and the message.</p>
+<h2>Event history</h2><ol id="event-log" aria-label="Event history"></ol>
+</main><script src="student.js"></script><script src="harness.js"></script></body></html>
